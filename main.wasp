@@ -7,13 +7,18 @@ app todolist {
   auth: {
     userEntity: User,
     methods: {
-      usernameAndPassword: {}, 
+      usernameAndPassword: {}, // This is a very naive implementation, use 'email' in production instead
+      //google: {}, // https://wasp-lang.dev/docs/integrations/google
+      //gitHub: {}, // https://wasp-lang.dev/docs/integrations/github
+      //email: {} // https://wasp-lang.dev/docs/guides/email-auth
     },
     onAuthFailedRedirectTo: "/login",
   }
 }
 
-
+// Use Prisma Schema Language (PSL) to define our entities: https://www.prisma.io/docs/concepts/components/prisma-schema
+// Run `wasp db migrate-dev` in the CLI to create the database tables
+// Then run `wasp db studio` to open Prisma Studio and view your db models
 entity User {=psl
   id          Int     @id @default(autoincrement())
   tasks       Task[]
